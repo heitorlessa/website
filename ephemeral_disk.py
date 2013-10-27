@@ -19,7 +19,7 @@ from sys import exit
 logging.basicConfig(level=logging.INFO, format='Timestamp: %(asctime)s - Level: %(levelname)s - %(message)s')
 
 
-class instance_tools:
+class tools:
     """ This class will provide some useful functions to manage
         EC2 instance resources"""
 
@@ -32,7 +32,7 @@ class instance_tools:
 
             Example:
 
-            t = ephemeral_python.instance_tools(force=1)
+            t = ephemeral_python.tools(force=1)
             t.create_disk_partition('/dev/xvdb', '1', 'c1.medium')
 
         """
@@ -303,9 +303,9 @@ w
             if self.check_mount_point(partition):
                 if self.force:
                     self.force_unmount(partition)
-            else:
-                logging.error('Partition {0} already mounted, cannot touch it!').format(partition)
-                exit(2)
+                else:
+                    logging.error('Partition {0} already mounted, cannot touch it!'.format(partition))
+                    exit(2)
 
             # Creates SWAP using mkswap and enable it using swapon
             logging.info('Formating partition {0} as SWAP'.format(partition))
@@ -338,9 +338,9 @@ w
             if self.check_mount_point(partition):
                 if self.force:
                     self.force_unmount(partition)
-            else:
-                logging.error('Partition {0} already mounted, cannot touch it!').format(partition)
-                exit(2)
+                else:
+                    logging.error('Partition {0} already mounted, cannot touch it!'.format(partition))
+                    exit(2)
 
             os.system("swapoff {0} 1>/dev/null".format(partition))
             logging.info('SWAP disabled successfully')
@@ -370,9 +370,9 @@ w
             if self.check_mount_point(partition):
                 if self.force:
                     self.force_unmount(partition)
-            else:
-                logging.error('Partition {0} already mounted, cannot touch it!').format(partition)
-                exit(2)
+                else:
+                    logging.error('Partition {0} already mounted, cannot touch it!'.format(partition))
+                    exit(2)
 
             logging.info('Formating partition {0} as EXT3'.format(partition))
 
@@ -404,9 +404,9 @@ w
             if self.check_mount_point(partition):
                 if self.force:
                     self.force_unmount(partition)
-            else:
-                logging.error('Partition {0} already mounted, cannot touch it!').format(partition)
-                exit(2)
+                else:
+                    logging.error('Partition {0} already mounted, cannot touch it!'.format(partition))
+                    exit(2)
 
             logging.info('Formating partition {0} as EXT4'.format(partition))
 
@@ -438,14 +438,15 @@ w
             if self.check_mount_point(partition):
                 if self.force:
                     self.force_unmount(partition)
-            else:
-                logging.error('Partition {0} already mounted, cannot touch it!').format(partition)
-                exit(2)
+                else:
+                    logging.error('Partition {0} already mounted, cannot touch it!'.format(partition))
+                    exit(2)
 
             logging.info('Mounting partition {0} in {1}'.format(partition, mount_point))
 
             if os.system("mount {0} {1} 1>/dev/null".format(partition, mount_point)):
                 logging.info('Partition {0} was mounted successfully in {1}'.format(partition, mount_point))
+
 
         except:
             logging.error("Error while mounting partition {0} in {1}".format(partition, mount_point))
