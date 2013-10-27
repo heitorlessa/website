@@ -18,7 +18,7 @@ Then, you can try importing it to confirm if everything went fine:
 <pre><code> import ephemeral_disk</code></pre>
 
 
-Please find below a real example of how it can be used:
+Please find below a real example of how it can be used (you can use disks.py to get started):
 
 <pre><code>ephemeral = ephemeral_disk.tools(force=1)</code></pre>
 
