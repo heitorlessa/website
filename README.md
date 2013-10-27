@@ -42,8 +42,8 @@ As we are specifying what instance_type we are currently using, create_disk_part
 from a list (hardcoded, this can be improved) and then creating a second paritition ('/dev/xvdb2') with a single call, rather
 than calling the method twice for example:
 
-ephemeral.create_disk_partition('/dev/xvdb', '8G', '1')
-ephemeral.create_disk_partition('/dev/xvdb', '300G', '2')
+<pre><code>ephemeral.create_disk_partition('/dev/xvdb', '8G', '1')
+ephemeral.create_disk_partition('/dev/xvdb', '300G', '2')</code></pre>
 
 This is only useful when you want something more specific (i.e 3 partitions with different sizes for example), but in this case all we want
 is to have 8G of SWAP and everything else be mounted in '/mnt'.
