@@ -2,7 +2,7 @@ import ephemeral_disk
 import os, urllib2
 
 # Instantiate instance_tools class into ephemeral
-ephemeral = ephemeral_python.instance_tools(force=1)
+ephemeral = ephemeral_disk.instance_tools(force=1)
 
 # Get the current instance type of the instance which run this script
 instance_type = urllib2.urlopen('http://169.254.169.254/latest/meta-data/instance-type').read()
