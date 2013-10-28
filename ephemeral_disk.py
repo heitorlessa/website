@@ -127,8 +127,9 @@ w
 
             logging.info('Partition created successfully')
 
-        except:
+        except Exception, e:
             logging.critical("Error trying to create a new partition")
+            logging.error("{0}".format(e))
             exit(2)
 
     def create_ephemeral_partition(self, disk, size, instance):
@@ -231,8 +232,9 @@ w
                 else:
                     return False
 
-        except:
-            logging.error("Error while checking mount point")
+        except Exception, e:
+            logging.critical("Error while checking mount point")
+            logging.error("{0}".format(e))
 
     def check_command(self, command):
         """ Check if command exists and can be executed.access
@@ -276,8 +278,9 @@ w
             os.system(partitioning)
             logging.info("Partition deleted successfully")
 
-        except:
-            logging.error('Error while deleting disk partition {0} - Please double check if it is in use and try again'.format(partition))
+        except Exception, e:
+            logging.critical("Error while deleting disk partition {0} - Please double check if it is in use and try again".format(partition))
+            logging.error("{0}".format(e))
 
     def enable_swap(self, partition):
         """ Enable SWAP partition previously created, example:
@@ -314,8 +317,9 @@ w
             os.system('swapon {0} 1>/dev/null'.format(partition))
             logging.info('SWAP enabled successfully')
 
-        except:
-            logging.error("Error while enabling SWAP")
+        except Exception, e:
+            logging.critical("Error while enabling SWAP")
+            logging.error("{0}".format(e))
 
     def disable_swap(self, partition):
         """ Disable SWAP partition, example
@@ -345,8 +349,9 @@ w
             os.system("swapoff {0} 1>/dev/null".format(partition))
             logging.info('SWAP disabled successfully')
 
-        except:
-            logging.error("Error while disabling SWAP")
+        except Exception, e:
+            logging.critical("Error while disabling SWAP")
+            logging.error("{0}".format(e))
 
     def format_as_ext3(self, partition):
         """ Format partition previously created as EXT3, example:
@@ -379,8 +384,9 @@ w
             os.system("mkfs.ext3 -q {0} 1>/dev/null".format(partition))
             logging.info('Partition formatted successfully as EXT3')
 
-        except:
-            logging.error("Error while formatting partition as EXT3")
+        except Exception, e:
+            logging.critical("Error while formatting partition as EXT3")
+            logging.error("{0}".format(e))
 
     def format_as_ext4(self, partition):
         """ Format partition previously created as EXT4, example:
@@ -413,8 +419,9 @@ w
             os.system("mkfs.ext4 -q {0} 1>/dev/null".format(partition))
             logging.info('Partition formmatted successfully as EXT4')
 
-        except:
-            logging.error("Error while formatting partition as EXT4")
+        except Exception, e:
+            logging.critical("Error while formatting partition as EXT4")
+            logging.error("{0}".format(e))
 
     def format_as_xfs(self, partition):
         """ Format partition previously created as XFS, example:
@@ -448,11 +455,9 @@ w
             os.system("mkfs.xfs -q {0} 1>/dev/null".format(partition))
             logging.info('Partition formmatted successfully as XFS')
 
-        except:
-            logging.error("Error while formatting partition as XFS")
-
-
-
+        except Exception, e:
+            logging.critical("Error while formatting partition as XFS")
+            logging.error("{0}".format(e))
 
     def mount_partition(self, partition, mount_point):
         """ Mount partition previously created and formatted, example:
@@ -486,8 +491,9 @@ w
                 logging.info('Partition {0} was mounted successfully in {1}'.format(partition, mount_point))
 
 
-        except:
-            logging.error("Error while mounting partition {0} in {1}".format(partition, mount_point))
+        except Exception, e:
+            logging.critical("Error while mounting partition {0} in {1}".format(partition, mount_point))
+            logging.error("{0}".format(e))
 
     def force_unmount(self, partition):
         """ Force unmount partition once mounted
