@@ -416,6 +416,44 @@ w
         except:
             logging.error("Error while formatting partition as EXT4")
 
+    def format_as_xfs(self, partition):
+        """ Format partition previously created as XFS, example:
+
+        format_as_xfs('/dev/xvdj1')
+        """
+
+        try:
+            # Check if partition selected exist, otherwise raise an error
+            if not self.check_partition(partition):
+                logging.error('Partition {0} does not exist, please choose an existent one'.format(partition))
+                exit(2)
+
+             # Confirm that mkfs.ext4 binary exists
+            if not self.check_command('/sbin/mkfs.xfs'):
+                logging.error('mkfs.xfs command does not exist or cannot be accessible')
+                logging.info('Please make sure you have XFS file system tools installed')
+                exit(2)
+
+            # Double check if partition is already in use
+            # and if Force is set unmount it before taking any action
+            if self.check_mount_point(partition):
+                if self.force:
+                    self.force_unmount(partition)
+                else:
+                    logging.error('Partition {0} already mounted, cannot touch it!'.format(partition))
+                    exit(2)
+
+            logging.info('Formating partition {0} as XFS'.format(partition))
+
+            os.system("mkfs.xfs -q {0} 1>/dev/null".format(partition))
+            logging.info('Partition formmatted successfully as XFS')
+
+        except:
+            logging.error("Error while formatting partition as XFS")
+
+
+
+
     def mount_partition(self, partition, mount_point):
         """ Mount partition previously created and formatted, example:
 
