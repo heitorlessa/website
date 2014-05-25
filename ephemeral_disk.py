@@ -171,8 +171,45 @@ w
         if 'hi1.4xlarge' in instance:
             total = 830
         if 'hs1.8xlarge' in instance:
-            total = 1014
-
+            total = 2014
+	# added numbers for the 3rd generation instances, as of May 2014
+	if 'm3.medium' in instance:
+	    total = 4
+	if 'm3.large' in instance:
+	    total = 32
+	if 'm3.xlarge' in instance:
+            total = 40
+        if 'm3.2xlarge' in instance:
+	    total = 80
+	if 'c3.large' in instance:
+	    total = 16
+	if 'c3.xlarge' in instance:
+	    total = 40
+	if 'c3.2xlarge' in instance:
+	    total = 80
+	if 'c3.4xlarge' in instance:
+	    total = 160
+	if 'c3.8xlarge' in instance:
+	    total = 320
+	if 'g2.2xlarge' in instance:
+	    total = 60
+	if 'r3.large' in instance:
+	    total = 32
+	if 'r3.xlarge' in instance:
+	    total = 80
+	if 'r3.2xlarge' in instance:
+	    total = 160
+	if 'r3.4xlarge' in instance:
+	    total = 320
+	if 'i2.xlarge' in instance:
+	    total = 800
+	if 'i2.2xlarge' in instance:
+	    total = 800
+	if 'i2.4xlarge' in instance:
+	    total = 800
+	if 'i2.8xlarge' in instance:
+	    total = 800
+	
 
         # Calculates how large ephemeral partition can be
         # Then, it creates itself using all space left
