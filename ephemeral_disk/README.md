@@ -1,8 +1,3 @@
-HL Website Repo
-=======
-
-This Repo will be used only for python files described in website articles (usually about AWS or any automation related), so please feel free to download and use the code provided. Also, this will be intended to be a short summary when multiple files are added,
-then README file will be placed with the file.
 
 [ephemeral_disk.py]
 -------
